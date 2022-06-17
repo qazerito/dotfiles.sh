@@ -1,0 +1,65 @@
+set $mod Mod4
+exec --no-startup-id xrandr --output DP0 --right-of HDMI-0 --auto
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8
+bindsym $mod+Shift+9 move container to workspace 9; workspace 9
+bindsym $mod+Shift+0 move container to workspace 10; workspace 10
+bindsym $mod+e exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+c reload
+bindsym $mod+q kill
+floating_modifier $mod
+bindsym $mod+space floating toggle
+bindsym $mod+Left move left
+bindsym $mod+Down move down
+bindsym $mod+Up move up
+bindsym $mod+Right move right
+for_window [urgent=latest] focus
+default_orientation horizontal
+font pango:Noto Mono Regular 13
+exec_always --no-startup-id autotiling
+exec --no-startup-id feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+bindsym $mod+Return exec --no-startup-id alacritty;focus
+bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '5%+'"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '5%-'"
+bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
+bindsym XF86MonBrightnessUp exec --no-startup-id backlight_control +10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id backlight_control -10 # decrease screen brightness
+new_window none
+new_float none
+for_window [class="^.*"] border pixel 0
+gaps inner 10
+gaps outer 0
+smart_gaps on
+
+bar {
+        colors {
+        background #000000
+        statusline #ffffff
+        separator #000000
+
+        # colour of border, background, and text
+        focused_workspace       #ffffff #ffffff #000000
+        active_workspace        #ffffff #ffffff #000000
+        inactive_workspace      #000000 #000000 #ffffff
+        urgent_workspace       #000000 #000000 #ff0000
+    }
+        status_command i3status
+`}
